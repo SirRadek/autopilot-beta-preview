@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&amp;display=swap">
+<title>zednik</title>
+<style>
+:root{
+  --color-accent: #2C5E43;
+  --color-accent-secondary: #A34C32;
+  --color-accent-soft: #E6F0EA;
+  --color-accent-text: #FFFFFF;
+  --color-background: #FAF6F0;
+  --color-border: #DDD3C7;
+  --color-focus-ring: #2C5E43;
+  --color-muted-text: #6E6962;
+  --color-surface: #F2EAE1;
+  --color-text: #2C2B29;
+  --type-font-body: "Lora", Georgia, serif;
+  --type-font-heading: "Lora", Georgia, serif;
+  --type-line-height-body: 1.5;
+  --type-role-scale-body-lg-fluid-cqi: 1.35cqi;
+  --type-role-scale-body-lg-max-rem: 1.24rem;
+  --type-role-scale-body-lg-min-rem: 1.08rem;
+  --type-role-scale-body-fluid-cqi: 1.12cqi;
+  --type-role-scale-body-max-rem: 1.125rem;
+  --type-role-scale-body-min-rem: 1rem;
+  --type-role-scale-caption-fluid-cqi: 0.82cqi;
+  --type-role-scale-caption-max-rem: 0.875rem;
+  --type-role-scale-caption-min-rem: 0.8rem;
+  --type-role-scale-display-fluid-cqi: 8.2cqi;
+  --type-role-scale-display-max-rem: 7.4rem;
+  --type-role-scale-display-min-rem: 2.75rem;
+  --type-role-scale-heading-fluid-cqi: 6cqi;
+  --type-role-scale-heading-max-rem: 5rem;
+  --type-role-scale-heading-min-rem: 2.35rem;
+  --type-role-scale-kicker-fluid-cqi: 0.9cqi;
+  --type-role-scale-kicker-max-rem: 0.94rem;
+  --type-role-scale-kicker-min-rem: 0.8rem;
+  --type-size-body: 1rem;
+  --type-size-heading: 1.5rem;
+  --type-web-font-family: Lora;
+  --type-web-font-weights: 400,700;
+  --type-weight-bold: 700;
+  --type-weight-regular: 400;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --radius-lg: 0.5rem;
+  --radius-md: 0.25rem;
+  --radius-none: 0;
+  --radius-sm: 0.125rem;
+  --shadow-md: 0 4px 12px rgb(15 23 42 / 0.12);
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+  --motion-duration-base: 200ms;
+  --motion-duration-fast: 120ms;
+  --motion-duration-slow: 320ms;
+  --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-reduced-motion: respect-prefers-reduced-motion;
+  --style-accent-angle-deg: -2deg;
+  --style-corner-style: rounded;
+  --style-decoration-intensity: subtle;
+  --style-heading-case: none;
+  --style-surface-treatment: flat;
+  --style-accent-angle-inverse-deg: 2deg;
+  --style-corner-radius: var(--radius-lg);
+  --style-decoration-border-width: 2px;
+  --style-decoration-opacity: 0.52;
+  --style-heading-transform: none;
+  --style-surface-background: var(--color-background);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+body {
+  --pdos-page-container-max: 1180px;
+  --pdos-page-gutter: var(--space-6);
+  --pdos-page-section-padding-block: calc(var(--space-8) * 2);
+  --pdos-page-section-gap: calc(var(--space-8) * 2);
+  --pdos-type-caption: clamp(var(--type-role-scale-caption-min-rem), var(--type-role-scale-caption-fluid-cqi), var(--type-role-scale-caption-max-rem));
+  --pdos-type-kicker: clamp(var(--type-role-scale-kicker-min-rem), var(--type-role-scale-kicker-fluid-cqi), var(--type-role-scale-kicker-max-rem));
+  --pdos-type-body: clamp(var(--type-role-scale-body-min-rem), var(--type-role-scale-body-fluid-cqi), var(--type-role-scale-body-max-rem));
+  --pdos-type-body-lg: clamp(var(--type-role-scale-body-lg-min-rem), var(--type-role-scale-body-lg-fluid-cqi), var(--type-role-scale-body-lg-max-rem));
+  --pdos-type-heading: clamp(var(--type-role-scale-heading-min-rem), var(--type-role-scale-heading-fluid-cqi), var(--type-role-scale-heading-max-rem));
+  --pdos-type-display: clamp(var(--type-role-scale-display-min-rem), var(--type-role-scale-display-fluid-cqi), var(--type-role-scale-display-max-rem));
+  --pdos-panel-min: 18rem;
+  --pdos-panel-gap: var(--space-6);
+  margin: 0;
+  font-family: var(--type-font-body);
+  font-size: var(--pdos-type-body);
+  line-height: var(--type-line-height-body);
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+.pdos-page {
+  min-height: 100svh;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  row-gap: 0;
+  color: var(--color-text);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-border) 26%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-border) 22%, transparent) 1px, transparent 1px),
+    var(--style-surface-background);
+  background-size:
+    clamp(7rem, 16vw, 14rem) clamp(7rem, 16vw, 14rem),
+    clamp(7rem, 16vw, 14rem) clamp(7rem, 16vw, 14rem),
+    auto;
+}
+
+.pdos-page > section {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.pdos-page,
+.pdos-page > section {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.pdos-page :where(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.pdos-page :where(p, li, a, span) {
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.pdos-panel-grid,
+[data-pdos-panel-grid] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--pdos-panel-min, 18rem)), 1fr));
+  gap: var(--pdos-panel-gap, var(--space-6));
+}
+
+.sharp-positioning-hero__copy::before,
+.proof-led-section__content::before,
+.outcome-cta__inner::before {
+  content: "";
+  display: block;
+  width: clamp(5rem, 18cqi, 14rem);
+  height: var(--style-decoration-border-width);
+  border-radius: var(--style-corner-radius);
+  background: var(--color-accent-secondary);
+  opacity: var(--style-decoration-opacity);
+  transform: rotate(var(--style-accent-angle-deg));
+  transform-origin: left center;
+}
+
+.cta {
+  min-width: 44px;
+  min-height: 44px;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--style-corner-radius);
+  color: var(--color-accent-text);
+  background: var(--color-accent);
+  font-family: var(--type-font-body);
+  font-size: var(--pdos-type-body);
+  font-weight: var(--type-weight-bold);
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  transition:
+    transform var(--motion-duration-fast) var(--motion-easing-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-accent-secondary);
+  background: var(--color-accent-secondary);
+}
+
+.cta--secondary {
+  color: var(--color-accent);
+  background: transparent;
+  border-color: var(--color-accent);
+  box-shadow: none;
+}
+
+.cta--secondary:hover {
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  border-color: var(--color-accent-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.cta:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  body {
+    --pdos-page-gutter: var(--space-4);
+    --pdos-page-section-padding-block: var(--space-8);
+    --pdos-page-section-gap: var(--space-8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+
+  .cta:hover {
+    transform: none;
+  }
+}
+.tactile-shadow-hero {
+  container-type: inline-size;
+  position: relative;
+  min-height: min(780px, 100svh);
+  overflow: hidden;
+  color: var(--color-text);
+  background: var(--color-background);
+  isolation: isolate;
+}
+
+.tactile-shadow-hero,
+.tactile-shadow-hero * {
+  box-sizing: border-box;
+}
+
+.tactile-shadow-hero__stone {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 16%, color-mix(in srgb, var(--color-background) 70%, transparent) 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 68% 36%, color-mix(in srgb, var(--color-text) 14%, transparent) 0 0.14rem, transparent 0.16rem),
+    radial-gradient(circle at 86% 74%, color-mix(in srgb, var(--color-border) 54%, transparent) 0 0.2rem, transparent 0.23rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--color-surface) 86%, var(--color-background)) 0 32%, color-mix(in srgb, var(--color-background) 72%, var(--color-surface)) 32% 64%, color-mix(in srgb, var(--color-surface) 68%, var(--color-accent-soft)) 64% 100%);
+}
+
+.tactile-shadow-hero__stone--image {
+  background: var(--color-background);
+}
+
+.tactile-shadow-hero__wall-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tactile-shadow-hero__photo-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 50% 46%, color-mix(in srgb, var(--color-background) 94%, transparent) 0 34%, color-mix(in srgb, var(--color-background) 86%, transparent) 34% 58%, transparent 76%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-background) 76%, transparent) 0%, color-mix(in srgb, var(--color-background) 90%, transparent) 54%, color-mix(in srgb, var(--color-text) 44%, transparent) 100%),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-text) 34%, transparent) 0%, transparent 22%, transparent 78%, color-mix(in srgb, var(--color-text) 34%, transparent) 100%);
+  pointer-events: none;
+}
+
+.tactile-shadow-hero__stone::before {
+  content: "";
+  position: absolute;
+  inset: -22%;
+  z-index: 2;
+  opacity: 0.58;
+  background:
+    radial-gradient(ellipse at 36% 42%, color-mix(in srgb, var(--color-surface) 72%, transparent) 0 18%, color-mix(in srgb, var(--color-background) 42%, transparent) 18% 34%, transparent 60%);
+  transform: translate3d(-7%, 0, 0);
+  animation: tactileShadowSunSweep 20s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.tactile-shadow-hero__stone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-text) 34%, transparent) 0, transparent 22%, transparent 78%, color-mix(in srgb, var(--color-text) 38%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-text) 32%, transparent) 0, transparent 28%, transparent 66%, color-mix(in srgb, var(--color-text) 44%, transparent) 100%);
+  pointer-events: none;
+}
+
+.tactile-shadow-hero__stone-surface {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.82;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-text) 17%, transparent) 1px, transparent 1px),
+    linear-gradient(180deg, transparent 0 calc(100% - max(1px, var(--style-decoration-border-width))), color-mix(in srgb, var(--color-text) 20%, transparent) calc(100% - max(1px, var(--style-decoration-border-width))) 100%),
+    radial-gradient(circle at 18% 28%, color-mix(in srgb, var(--color-background) 58%, transparent) 0 0.16rem, transparent 0.18rem),
+    radial-gradient(circle at 43% 66%, color-mix(in srgb, var(--color-text) 14%, transparent) 0 0.12rem, transparent 0.15rem),
+    radial-gradient(circle at 79% 41%, color-mix(in srgb, var(--color-border) 46%, transparent) 0 0.13rem, transparent 0.16rem);
+  background-size:
+    clamp(4.8rem, 12cqi, 8.4rem) 100%,
+    100% clamp(3.2rem, 8cqi, 5.6rem),
+    auto,
+    auto,
+    auto;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.tactile-shadow-hero__photo-caption {
+  position: absolute;
+  left: clamp(var(--space-4), 4cqi, var(--space-8));
+  top: clamp(var(--space-4), 4cqi, var(--space-8));
+  z-index: 4;
+  max-width: min(22rem, calc(100% - var(--space-8)));
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: var(--style-decoration-border-width) solid color-mix(in srgb, var(--color-accent) 44%, var(--color-border));
+  border-radius: min(var(--style-corner-radius), 8px);
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-background) 74%, var(--color-surface));
+  font-family: var(--type-font-body);
+  font-size: clamp(0.8rem, 1.3cqi, 0.92rem);
+  font-weight: var(--type-weight-bold);
+  line-height: 1.2;
+}
+
+.tactile-shadow-hero__layout {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--pdos-page-container-max));
+  min-height: inherit;
+  margin-inline: auto;
+  padding: var(--pdos-page-section-padding-block) var(--pdos-page-gutter);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  gap: clamp(var(--space-7), 7cqi, calc(var(--space-8) * 1.8));
+}
+
+.tactile-shadow-hero__copy {
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-5);
+  max-width: min(100%, 70rem);
+  text-align: center;
+}
+
+.tactile-shadow-hero__eyebrow {
+  width: fit-content;
+  margin: 0;
+  padding-block-end: calc(var(--style-decoration-border-width) + 0.125rem);
+  border-block-end: var(--style-decoration-border-width) solid var(--color-accent-soft);
+  color: color-mix(in srgb, var(--color-accent) 76%, var(--color-text));
+  font-family: var(--type-font-body);
+  font-size: var(--pdos-type-kicker);
+  font-weight: var(--type-weight-bold);
+  letter-spacing: 0;
+  text-shadow: 0 0.35rem 1.4rem color-mix(in srgb, var(--color-text) 54%, transparent);
+}
+
+.tactile-shadow-hero h1 {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--color-accent);
+  font-family: var(--type-font-heading);
+  font-size: clamp(2.8rem, 10cqi, 7.4rem);
+  line-height: 0.92;
+  font-weight: var(--type-weight-bold);
+  letter-spacing: 0;
+  text-align: center;
+  text-shadow:
+    0 0.16rem 0 color-mix(in srgb, var(--color-background) 44%, transparent),
+    0 0.6rem 2rem color-mix(in srgb, var(--color-text) 72%, transparent),
+    0 0 3rem color-mix(in srgb, var(--color-text) 54%, transparent);
+  text-transform: var(--style-heading-transform);
+  overflow-wrap: anywhere;
+}
+
+.tactile-shadow-hero__bottom {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.tactile-shadow-hero .cta {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) var(--space-6);
+  border: var(--style-decoration-border-width) solid color-mix(in srgb, var(--color-accent) 74%, var(--color-text));
+  border-radius: min(var(--style-corner-radius), 8px);
+  color: var(--color-text);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-surface) 82%, var(--color-accent)) 0 48%, color-mix(in srgb, var(--color-background) 68%, var(--color-surface)) 48% 100%);
+  font-family: var(--type-font-body);
+  font-size: var(--type-size-body);
+  font-weight: var(--type-weight-bold);
+  line-height: 1;
+  text-decoration: none;
+  box-shadow:
+    0 0.4rem 1.4rem color-mix(in srgb, var(--color-text) 38%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-background) 72%, transparent);
+}
+
+.tactile-shadow-hero .cta:hover {
+  transform: none;
+}
+
+.tactile-shadow-hero .cta:focus-visible {
+  outline: max(2px, var(--style-decoration-border-width)) solid var(--color-accent-soft);
+  outline-offset: var(--space-2);
+}
+
+.tactile-shadow-hero__badge {
+  max-width: min(42rem, 100%);
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  border: var(--style-decoration-border-width) solid color-mix(in srgb, var(--color-accent-soft) 72%, var(--color-border));
+  border-radius: min(var(--style-corner-radius), 8px);
+  color: color-mix(in srgb, var(--color-background) 88%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-text) 58%, transparent);
+  font-family: var(--type-font-body);
+  font-size: clamp(1rem, 1.5cqi, 1.1rem);
+  font-weight: var(--type-weight-bold);
+  line-height: 1.35;
+  text-shadow: 0 0.35rem 1.1rem color-mix(in srgb, var(--color-text) 58%, transparent);
+}
+
+.tactile-shadow-hero__badge-separator {
+  color: color-mix(in srgb, var(--color-accent-soft) 82%, var(--color-background));
+}
+
+.tactile-shadow-hero__focus {
+  opacity: 0;
+  filter: blur(4px);
+  animation: tactileShadowFocus 2.5s ease-out both;
+  will-change: filter, opacity;
+}
+
+.tactile-shadow-hero__focus--late {
+  animation-delay: 280ms;
+}
+
+@keyframes tactileShadowSunSweep {
+  0% {
+    opacity: 0.42;
+    transform: translate3d(-7%, 0, 0);
+  }
+  48% {
+    opacity: 0.64;
+  }
+  100% {
+    opacity: 0.5;
+    transform: translate3d(7%, 0, 0);
+  }
+}
+
+@keyframes tactileShadowFocus {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 820px) {
+  .tactile-shadow-hero {
+    min-height: min(720px, 100svh);
+  }
+
+  .tactile-shadow-hero__layout {
+    padding: var(--space-8) var(--space-4);
+    gap: var(--space-7);
+  }
+
+  .tactile-shadow-hero h1 {
+    max-width: 11ch;
+    font-size: clamp(2.45rem, 15cqi, 5rem);
+  }
+
+  .tactile-shadow-hero__photo-caption {
+    left: var(--space-4);
+    top: var(--space-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .tactile-shadow-hero__photo-caption {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .tactile-shadow-hero {
+    min-height: min(680px, 100svh);
+  }
+
+  .tactile-shadow-hero__layout {
+    padding-block: var(--space-8);
+  }
+
+  .tactile-shadow-hero__copy {
+    gap: var(--space-4);
+  }
+
+  .tactile-shadow-hero h1 {
+    max-width: 10ch;
+    font-size: clamp(2.25rem, 18cqi, 4.2rem);
+  }
+
+  .tactile-shadow-hero__bottom {
+    width: 100%;
+  }
+
+  .tactile-shadow-hero .cta {
+    width: min(100%, 24rem);
+  }
+
+  .tactile-shadow-hero__badge {
+    width: min(100%, 24rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tactile-shadow-hero__stone::before,
+  .tactile-shadow-hero__focus,
+  .tactile-shadow-hero__focus--late {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .tactile-shadow-hero__stone::before {
+    opacity: 0.5;
+  }
+}
+
+.proof-led-section {
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+  color: var(--color-text);
+  background: transparent;
+}
+
+.proof-led-section__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--pdos-page-container-max));
+  margin-inline: auto;
+  padding: var(--pdos-page-section-padding-block) var(--pdos-page-gutter);
+  display: grid;
+  grid-template-columns: minmax(min(100%, 16rem), 0.72fr) minmax(0, 1fr);
+  gap: var(--pdos-page-section-gap);
+  align-items: center;
+}
+
+.proof-led-section__asset-wrap {
+  position: relative;
+  min-height: clamp(18rem, 40cqi, 29rem);
+  overflow: hidden;
+  border: var(--style-decoration-border-width) solid var(--color-border);
+  border-radius: var(--style-corner-radius);
+  background: color-mix(in srgb, var(--color-surface) 84%, var(--color-background));
+  box-shadow: var(--shadow-md);
+}
+
+.proof-led-section__asset-wrap img,
+.proof-led-section__asset {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.proof-led-section__asset-wrap img {
+  object-fit: cover;
+}
+
+.proof-led-section__asset {
+  position: absolute;
+  inset: 0;
+}
+
+.proof-led-section__asset-bg {
+  fill: var(--color-surface);
+}
+
+.proof-led-section__asset-panel {
+  fill: color-mix(in srgb, var(--color-background) 72%, var(--color-surface));
+  stroke: var(--color-border);
+  stroke-width: 2;
+}
+
+.proof-led-section__asset-accent {
+  fill: var(--color-accent-secondary);
+  opacity: var(--style-decoration-opacity);
+}
+
+.proof-led-section__asset-line {
+  stroke: var(--color-text);
+  stroke-width: 2;
+  opacity: 0.6;
+}
+
+.proof-led-section__asset-soft {
+  fill: var(--color-accent-soft);
+}
+
+.proof-led-section__content {
+  display: grid;
+  gap: var(--space-6);
+  align-content: center;
+  max-width: min(100%, 70ch);
+}
+
+.proof-led-section__statement {
+  display: grid;
+  gap: var(--space-4);
+  padding-inline-start: var(--space-5);
+  border-inline-start: var(--style-decoration-border-width) solid var(--color-accent);
+}
+
+.proof-led-section h2 {
+  margin: 0;
+  max-width: 14ch;
+  color: var(--color-text);
+  font-family: var(--type-font-heading);
+  font-size: var(--pdos-type-heading);
+  line-height: 0.95;
+  font-weight: var(--type-weight-bold);
+  letter-spacing: 0;
+  text-transform: var(--style-heading-transform);
+}
+
+.proof-led-section__proof {
+  margin: 0;
+  max-width: min(100%, 66ch);
+  color: var(--color-text);
+  font-family: var(--type-font-body);
+  font-size: var(--pdos-type-body-lg);
+  line-height: var(--type-line-height-body);
+}
+
+.proof-led-section__source {
+  width: fit-content;
+  min-height: 2rem;
+  margin: 0;
+  padding-block-end: calc(var(--style-decoration-border-width) + 0.125rem);
+  border-block-end: var(--style-decoration-border-width) solid var(--color-accent-soft);
+  color: var(--color-muted-text);
+  font-family: var(--type-font-body);
+  font-size: var(--pdos-type-kicker);
+  font-weight: var(--type-weight-bold);
+  letter-spacing: 0;
+}
+
+@media (max-width: 760px) {
+  .proof-led-section__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-led-section__asset-wrap {
+    min-height: 15rem;
+  }
+
+  .proof-led-section h2 {
+    max-width: 12ch;
+  }
+
+  .proof-led-section .cta {
+    width: 100%;
+  }
+}
+
+.outcome-cta {
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+  color: var(--color-text);
+  background: transparent;
+}
+
+.outcome-cta__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--pdos-page-container-max));
+  margin-inline: auto;
+  padding: var(--pdos-page-section-padding-block) var(--pdos-page-gutter);
+  display: grid;
+  gap: var(--space-6);
+}
+
+.outcome-cta__copy {
+  display: grid;
+  grid-template-columns: minmax(min(100%, 13rem), 0.36fr) minmax(0, 1fr) minmax(min(100%, 14rem), 0.34fr);
+  gap: var(--pdos-page-section-gap);
+  align-items: center;
+}
+
+.outcome-cta__proof-context {
+  min-width: 44px;
+  min-height: 44px;
+  align-self: center;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-inline-start: var(--style-decoration-border-width) solid var(--color-accent-secondary);
+  border-radius: var(--style-corner-radius);
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-surface) 78%, var(--color-background));
+  box-shadow: var(--shadow-sm);
+}
+
+.outcome-cta__proof-source,
+.outcome-cta__proof-text {
+  margin: 0;
+}
+
+.outcome-cta__proof-source {
+  width: fit-content;
+  color: var(--color-muted-text);
+  font-family: var(--type-font-body);
+  font-size: var(--pdos-type-kicker);
+  font-weight: var(--type-weight-bold);
+  letter-spacing: 0;
+}
+
+.outcome-cta__proof-text {
+  max-width: min(100%, 62ch);
+  justify-self: start;
+  color: var(--color-text);
+  font-family: var(--type-font-body);
+  font-size: var(--pdos-type-body);
+  line-height: var(--type-line-height-body);
+}
+
+.outcome-cta h2 {
+  margin: 0;
+  max-width: 16ch;
+  color: var(--color-text);
+  font-family: var(--type-font-heading);
+  font-size: var(--pdos-type-heading);
+  line-height: 0.94;
+  font-weight: var(--type-weight-bold);
+  letter-spacing: 0;
+  text-transform: var(--style-heading-transform);
+}
+
+@media (max-width: 960px) {
+  .outcome-cta__copy {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .outcome-cta__proof-context {
+    min-height: 44px;
+  }
+
+  .outcome-cta h2 {
+    max-width: 12ch;
+  }
+
+  .outcome-cta .cta {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+<main class="pdos-page" data-composition-id="zednik">
+<section class="tactile-shadow-hero" data-pattern-id="tactile-shadow-hero" data-contract-id="pattern-tactile-shadow-hero" data-motion-strategy="css-only" data-reduced-motion-fallback="Pískovcová zeď z dokončené stavby" aria-labelledby="tactile-shadow-hero-title">
+  <figure class="tactile-shadow-hero__stone tactile-shadow-hero__stone--image">
+    <img class="tactile-shadow-hero__wall-image" src="./assets/sections/zednik-sandstone-wall.jpg" alt="Pískovcová zeď — ruční lícové zdivo" decoding="async" fetchpriority="high">
+    <div class="tactile-shadow-hero__photo-scrim" aria-hidden="true"></div>
+    <figcaption class="tactile-shadow-hero__photo-caption" data-contract-prop="photo_caption">Pískovcová zeď — ruční lícové zdivo</figcaption>
+  </figure>
+  <div class="tactile-shadow-hero__layout">
+    <div class="tactile-shadow-hero__copy tactile-shadow-hero__focus">
+      <p class="tactile-shadow-hero__eyebrow" data-contract-prop="eyebrow">Tradiční rodinné zednictví z Polabí</p>
+      <h1 id="tactile-shadow-hero-title" data-contract-prop="headline">Stavíme poctivé a bytelné domy z cihel a vápna a citlivě rekonstruujeme staré kamenné chalupy</h1>
+    </div>
+    <div class="tactile-shadow-hero__bottom tactile-shadow-hero__focus tactile-shadow-hero__focus--late">
+      <a class="cta" data-contract-prop="primary_cta" href="#kontakt">Získat kalkulaci zdarma</a>
+      <p class="tactile-shadow-hero__badge">
+        <span data-contract-prop="trust_cue">18 let praxe a 124 dokončených staveb — Brandýs nad Labem, Mělník, Nymburk a okolí</span>
+        <span class="tactile-shadow-hero__badge-separator" aria-hidden="true"> / </span>
+        <span data-contract-prop="heritage_badge">Založeno na poctivé práci od r. 2004</span>
+      </p>
+    </div>
+  </div>
+</section>
+<section class="proof-led-section" data-pattern-id="proof-led-section" data-contract-id="pattern-proof-led-section" data-proof-asset-id="inline:proof_asset" aria-labelledby="proof-led-section-title">
+  <div class="proof-led-section__inner">
+    <div class="proof-led-section__asset-wrap" data-contract-slot="proof_asset" data-asset-id="inline:proof_asset" data-asset-source="./assets/zednik-brick-proof.jpg">
+      <img class="proof-led-section__asset" src="./assets/zednik-brick-proof.jpg" alt="Reálná zednická práce — cihlová zeď" loading="lazy" decoding="async">
+    </div>
+    <div class="proof-led-section__content">
+      <div class="proof-led-section__statement">
+        <h2 id="proof-led-section-title" data-contract-prop="outcome_statement">Získáte dokonale rovné zdivo a omítky z čistě přírodních materiálů, které vám bez prasklin vydrží po generace.</h2>
+        <p class="proof-led-section__proof" data-contract-prop="proof_item">Kompletní obnova památkově chráněné stodoly v Brandýse s použitím původního pískovce a hydraulického vápna bez příměsi cementu.</p>
+        <p class="proof-led-section__source" data-contract-prop="source_reference">Ukázka naší práce · Jak jsme zachránili stodolu z roku 1890 v Brandýse</p>
+      </div>
+      <a class="cta cta--secondary" data-contract-prop="cta_label" href="#proof">Prohlédnout naše realizace</a>
+    </div>
+  </div>
+</section>
+<section class="outcome-cta" data-pattern-id="outcome-cta" data-contract-id="pattern-outcome-cta" data-proof-context-id="proof" aria-labelledby="outcome-cta-title">
+  <div class="outcome-cta__inner">
+    <div class="outcome-cta__copy">
+      <div class="outcome-cta__proof-context" data-contract-slot="proof_context" data-slot-target-kind="pattern" data-slot-target-id="proof">
+        <p class="outcome-cta__proof-source" data-contract-prop="source_reference">Ukázka naší práce · Jak jsme zachránili stodolu z roku 1890 v Brandýse</p>
+<p class="outcome-cta__proof-text" data-contract-prop="proof_item">Kompletní obnova památkově chráněné stodoly v Brandýse s použitím původního pískovce a hydraulického vápna bez příměsi cementu.</p>
+      </div>
+      <h2 id="outcome-cta-title" data-contract-prop="outcome_statement">Udělejte první krok k poctivě postavenému domovu – naceníme váš projekt bez skrytých poplatků a navyšování rozpočtu.</h2>
+      <a class="cta" data-contract-prop="cta_label" href="#request">Nezávazně poptat nacenění</a>
+    </div>
+  </div>
+</section>
+</main>
+</body>
+</html><!-- zednik landing preview (V5 Patinovaný stín) -->
