@@ -297,7 +297,7 @@ svg {
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(ellipse at 50% 46%, color-mix(in srgb, var(--color-background) 26%, transparent) 0 34%, color-mix(in srgb, var(--color-background) 16%, transparent) 34% 58%, transparent 76%),
+    radial-gradient(ellipse at 50% 46%, color-mix(in srgb, var(--color-background) 58%, transparent) 0 30%, color-mix(in srgb, var(--color-background) 34%, transparent) 30% 54%, transparent 78%),
     linear-gradient(180deg, color-mix(in srgb, var(--color-background) 14%, transparent) 0%, color-mix(in srgb, var(--color-background) 10%, transparent) 54%, color-mix(in srgb, var(--color-text) 18%, transparent) 100%),
     linear-gradient(90deg, color-mix(in srgb, var(--color-text) 14%, transparent) 0%, transparent 22%, transparent 78%, color-mix(in srgb, var(--color-text) 14%, transparent) 100%);
   pointer-events: none;
@@ -323,8 +323,8 @@ svg {
   inset: 0;
   z-index: 3;
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--color-text) 12%, transparent) 0, transparent 22%, transparent 78%, color-mix(in srgb, var(--color-text) 14%, transparent) 100%),
-    linear-gradient(180deg, color-mix(in srgb, var(--color-text) 10%, transparent) 0, transparent 28%, transparent 66%, color-mix(in srgb, var(--color-text) 16%, transparent) 100%);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-text) 8%, transparent) 0, transparent 22%, transparent 78%, color-mix(in srgb, var(--color-text) 9%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-text) 6%, transparent) 0, transparent 28%, transparent 66%, color-mix(in srgb, var(--color-text) 9%, transparent) 100%);
   pointer-events: none;
 }
 
@@ -362,7 +362,7 @@ svg {
   color: var(--color-text);
   background: color-mix(in srgb, var(--color-background) 74%, var(--color-surface));
   font-family: var(--type-font-body);
-  font-size: clamp(0.8rem, 1.3cqi, 0.92rem);
+  font-size: clamp(1rem, 1.3cqi, 1.05rem);
   font-weight: var(--type-weight-bold);
   line-height: 1.2;
 }
@@ -408,7 +408,7 @@ svg {
   color: var(--color-accent);
   font-family: var(--type-font-heading);
   font-size: clamp(2.35rem, 6.2cqi, 5.2rem);
-  line-height: 1.02;
+  line-height: 1.08;
   font-weight: var(--type-weight-bold);
   letter-spacing: 0;
   text-align: center;
@@ -434,19 +434,16 @@ svg {
   align-items: center;
   justify-content: center;
   padding: var(--space-4) var(--space-6);
-  border: var(--style-decoration-border-width) solid color-mix(in srgb, var(--color-accent) 74%, var(--color-text));
+  border: var(--style-decoration-border-width) solid color-mix(in srgb, var(--color-accent) 78%, var(--color-text));
   border-radius: min(var(--style-corner-radius), 8px);
-  color: var(--color-text);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--color-surface) 82%, var(--color-accent)) 0 48%, color-mix(in srgb, var(--color-background) 68%, var(--color-surface)) 48% 100%);
+  color: var(--color-accent-text);
+  background: var(--color-accent);
   font-family: var(--type-font-body);
   font-size: var(--type-size-body);
   font-weight: var(--type-weight-bold);
   line-height: 1;
   text-decoration: none;
-  box-shadow:
-    0 0.4rem 1.4rem color-mix(in srgb, var(--color-text) 38%, transparent),
-    inset 0 1px 0 color-mix(in srgb, var(--color-background) 72%, transparent);
+  box-shadow: 0 0.4rem 1.2rem color-mix(in srgb, var(--color-text) 28%, transparent);
 }
 
 .tactile-shadow-hero .cta:hover {
@@ -464,13 +461,13 @@ svg {
   padding: var(--space-2) var(--space-4);
   border: var(--style-decoration-border-width) solid color-mix(in srgb, var(--color-accent-soft) 72%, var(--color-border));
   border-radius: min(var(--style-corner-radius), 8px);
-  color: color-mix(in srgb, var(--color-background) 88%, var(--color-surface));
-  background: color-mix(in srgb, var(--color-text) 58%, transparent);
+  color: color-mix(in srgb, var(--color-background) 92%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-text) 92%, var(--color-accent));
   font-family: var(--type-font-body);
   font-size: clamp(1rem, 1.5cqi, 1.1rem);
   font-weight: var(--type-weight-bold);
   line-height: 1.35;
-  text-shadow: 0 0.35rem 1.1rem color-mix(in srgb, var(--color-text) 58%, transparent);
+  text-shadow: 0 0.12rem 0.4rem color-mix(in srgb, var(--color-text) 30%, transparent);
 }
 
 .tactile-shadow-hero__badge-separator {
@@ -626,6 +623,7 @@ svg {
 
 .proof-led-section__asset-wrap img {
   object-fit: cover;
+  filter: saturate(1.08) sepia(0.16) brightness(1.05) contrast(1.02);
 }
 
 .proof-led-section__asset {
@@ -674,11 +672,11 @@ svg {
 
 .proof-led-section h2 {
   margin: 0;
-  max-width: 14ch;
+  max-width: min(100%, 24ch);
   color: var(--color-text);
   font-family: var(--type-font-heading);
-  font-size: var(--pdos-type-heading);
-  line-height: 0.95;
+  font-size: clamp(1.8rem, 3.4cqi, 3rem);
+  line-height: 1.08;
   font-weight: var(--type-weight-bold);
   letter-spacing: 0;
   text-transform: var(--style-heading-transform);
@@ -716,7 +714,8 @@ svg {
   }
 
   .proof-led-section h2 {
-    max-width: 12ch;
+    max-width: min(100%, 20ch);
+    font-size: clamp(1.6rem, 6cqi, 2.3rem);
   }
 
   .proof-led-section .cta {
@@ -788,11 +787,11 @@ svg {
 
 .outcome-cta h2 {
   margin: 0;
-  max-width: 16ch;
+  max-width: min(100%, 24ch);
   color: var(--color-text);
   font-family: var(--type-font-heading);
-  font-size: var(--pdos-type-heading);
-  line-height: 0.94;
+  font-size: clamp(1.8rem, 3.4cqi, 3rem);
+  line-height: 1.08;
   font-weight: var(--type-weight-bold);
   letter-spacing: 0;
   text-transform: var(--style-heading-transform);
@@ -809,7 +808,8 @@ svg {
   }
 
   .outcome-cta h2 {
-    max-width: 12ch;
+    max-width: min(100%, 20ch);
+    font-size: clamp(1.6rem, 6cqi, 2.3rem);
   }
 
   .outcome-cta .cta {
@@ -843,16 +843,16 @@ svg {
 </section>
 <section class="proof-led-section" data-pattern-id="proof-led-section" data-contract-id="pattern-proof-led-section" data-proof-asset-id="inline:proof_asset" aria-labelledby="proof-led-section-title">
   <div class="proof-led-section__inner">
-    <div class="proof-led-section__asset-wrap" data-contract-slot="proof_asset" data-asset-id="inline:proof_asset" data-asset-source="./assets/zednik-brick-proof.jpg">
-      <img class="proof-led-section__asset" src="./assets/zednik-brick-proof.jpg" alt="Reálná zednická práce — cihlová zeď" loading="lazy" decoding="async">
+    <div class="proof-led-section__asset-wrap" data-contract-slot="proof_asset" data-asset-id="inline:proof_asset" data-asset-source="./assets/sections/zednik-stone-proof.jpg">
+      <img class="proof-led-section__asset" src="./assets/sections/zednik-stone-proof.jpg" alt="Ručně kladené kamenné zdivo — rekonstrukce staré chalupy" loading="lazy" decoding="async">
     </div>
     <div class="proof-led-section__content">
       <div class="proof-led-section__statement">
-        <h2 id="proof-led-section-title" data-contract-prop="outcome_statement">Získáte dokonale rovné zdivo a omítky z čistě přírodních materiálů, které vám bez prasklin vydrží po generace.</h2>
-        <p class="proof-led-section__proof" data-contract-prop="proof_item">Kompletní obnova památkově chráněné stodoly v Brandýse s použitím původního pískovce a hydraulického vápna bez příměsi cementu.</p>
+        <h2 id="proof-led-section-title" data-contract-prop="outcome_statement">Řemeslo, které přetrvá generace.</h2>
+        <p class="proof-led-section__proof" data-contract-prop="proof_item">Získáte dokonale rovné zdivo a omítky z čistě přírodních materiálů, které vám bez prasklin vydrží po generace. Kompletní obnova památkově chráněné stodoly v Brandýse s použitím původního pískovce a hydraulického vápna bez příměsi cementu.</p>
         <p class="proof-led-section__source" data-contract-prop="source_reference">Ukázka naší práce · Jak jsme zachránili stodolu z roku 1890 v Brandýse</p>
       </div>
-      <a class="cta cta--secondary" data-contract-prop="cta_label" href="#proof">Prohlédnout naše realizace</a>
+      <a class="cta" data-contract-prop="cta_label" href="#kontakt">Prohlédnout naše realizace</a>
     </div>
   </div>
 </section>
@@ -861,10 +861,10 @@ svg {
     <div class="outcome-cta__copy">
       <div class="outcome-cta__proof-context" data-contract-slot="proof_context" data-slot-target-kind="pattern" data-slot-target-id="proof">
         <p class="outcome-cta__proof-source" data-contract-prop="source_reference">Ukázka naší práce · Jak jsme zachránili stodolu z roku 1890 v Brandýse</p>
-<p class="outcome-cta__proof-text" data-contract-prop="proof_item">Kompletní obnova památkově chráněné stodoly v Brandýse s použitím původního pískovce a hydraulického vápna bez příměsi cementu.</p>
+<p class="outcome-cta__proof-text" data-contract-prop="proof_item">Získáte dokonale rovné zdivo a omítky z čistě přírodních materiálů, které vám bez prasklin vydrží po generace. Kompletní obnova památkově chráněné stodoly v Brandýse s použitím původního pískovce a hydraulického vápna bez příměsi cementu.</p>
       </div>
-      <h2 id="outcome-cta-title" data-contract-prop="outcome_statement">Udělejte první krok k poctivě postavenému domovu – naceníme váš projekt bez skrytých poplatků a navyšování rozpočtu.</h2>
-      <a class="cta" data-contract-prop="cta_label" href="#request">Nezávazně poptat nacenění</a>
+      <h2 id="outcome-cta-title" data-contract-prop="outcome_statement">Postavme váš domov poctivě a bez skrytých poplatků.</h2>
+      <a class="cta" data-contract-prop="cta_label" href="#kontakt">Nezávazně poptat nacenění</a>
     </div>
   </div>
 </section>
